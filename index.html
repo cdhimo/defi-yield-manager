@@ -18,7 +18,8 @@
             </div>
             <div class="nav-menu">
                 <a href="#home" class="nav-link">Home</a>
-                <a href="#calculator" class="nav-link">Calculator</a>
+                <a href="#calculator" class="nav-link">Expense Calculator</a>
+                <a href="#pricing" class="nav-link">Pricing</a>
                 <a href="#how-it-works" class="nav-link">How It Works</a>
                 <a href="#contact" class="nav-link">Contact</a>
             </div>
@@ -30,25 +31,25 @@
         <div class="hero-container">
             <div class="hero-content">
                 <h1 class="hero-title">
-                    Turn Your Monthly Expenses Into 
-                    <span class="gradient-text">Free Money</span>
+                    Maximize Your Monthly Expenses with 
+                    <span class="gradient-text">Solana Yield Strategies</span>
                 </h1>
                 <p class="hero-description">
-                    Automatically earn stablecoin yield on your monthly bills while we handle the payments. 
-                    Your expenses become your income stream.
+                    Calculate your monthly expenses and earn yield on Solana. Choose from free basic vaults or premium advanced strategies. 
+                    Turn your expenses into passive income.
                 </p>
                 <div class="hero-stats">
                     <div class="stat">
-                        <div class="stat-number">8-12%</div>
-                        <div class="stat-label">APY on Stablecoins</div>
+                        <div class="stat-number">12-25%</div>
+                        <div class="stat-label">APY on Solana</div>
                     </div>
                     <div class="stat">
-                        <div class="stat-number">$0</div>
-                        <div class="stat-label">Setup Fees</div>
+                        <div class="stat-number">Free</div>
+                        <div class="stat-label">Basic Vault</div>
                     </div>
                     <div class="stat">
-                        <div class="stat-number">24/7</div>
-                        <div class="stat-label">Auto Payments</div>
+                        <div class="stat-number">Premium</div>
+                        <div class="stat-label">Advanced Strategies</div>
                     </div>
                 </div>
                 <button class="cta-button" onclick="scrollToCalculator()">
@@ -69,8 +70,8 @@
     <!-- Calculator Section -->
     <section id="calculator" class="calculator">
         <div class="container">
-            <h2 class="section-title">Earnings Calculator</h2>
-            <p class="section-subtitle">See how much you could earn by converting your monthly expenses into yield-generating stablecoins</p>
+            <h2 class="section-title">Monthly Expense Calculator</h2>
+            <p class="section-subtitle">Calculate your monthly expenses and see potential Solana yield earnings</p>
             
             <div class="calculator-container">
                 <div class="calculator-inputs">
@@ -80,11 +81,12 @@
                     </div>
                     
                     <div class="input-group">
-                        <label for="yield-rate">Expected Yield Rate (%)</label>
+                        <label for="yield-rate">Solana Yield Strategy</label>
                         <select id="yield-rate">
-                            <option value="8">8% (Conservative)</option>
-                            <option value="10" selected>10% (Moderate)</option>
-                            <option value="12">12% (Aggressive)</option>
+                            <option value="10">10% (Free Tier - Basic Vault)</option>
+                            <option value="15" selected>15% (Premium - Moderate Risk)</option>
+                            <option value="20">20% (Premium - Higher Risk)</option>
+                            <option value="25">25% (Premium - Aggressive)</option>
                         </select>
                     </div>
                     
@@ -116,6 +118,134 @@
                         <div class="result-title">Total Earnings</div>
                         <div class="result-value" id="total-earnings">$0</div>
                         <div class="result-description">Over selected period</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="pricing">
+        <div class="container">
+            <h2 class="section-title">Choose Your Solana Yield Strategy</h2>
+            <p class="section-subtitle">Select the plan that best fits your investment goals and risk tolerance</p>
+            
+            <div class="pricing-container">
+                <div class="pricing-card free">
+                    <div class="pricing-header">
+                        <div class="plan-name">Free Tier</div>
+                        <div class="plan-price">$0<span>/month</span></div>
+                        <div class="plan-description">Basic Solana Yield Vault</div>
+                    </div>
+                    <div class="pricing-features">
+                        <div class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>Basic USDC/USDT yield vault</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>8-12% APY on stablecoins</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>Monthly expense calculator</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>Basic portfolio tracking</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>Community support</span>
+                        </div>
+                        <div class="feature-item disabled">
+                            <i class="fas fa-times"></i>
+                            <span>Advanced strategies</span>
+                        </div>
+                        <div class="feature-item disabled">
+                            <i class="fas fa-times"></i>
+                            <span>Auto-rebalancing</span>
+                        </div>
+                        <div class="feature-item disabled">
+                            <i class="fas fa-times"></i>
+                            <span>Priority support</span>
+                        </div>
+                    </div>
+                    <button class="pricing-button free-button">Get Started Free</button>
+                </div>
+                
+                <div class="pricing-card premium featured">
+                    <div class="popular-badge">Most Popular</div>
+                    <div class="pricing-header">
+                        <div class="plan-name">Premium</div>
+                        <div class="plan-price">$29<span>/month</span></div>
+                        <div class="plan-description">Advanced Investment Strategies</div>
+                    </div>
+                    <div class="pricing-features">
+                        <div class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>Everything in Free Tier</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>15-25% APY strategies</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>Multi-token yield farming</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>Auto-rebalancing portfolio</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>Advanced analytics dashboard</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>Risk management tools</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>Priority support</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>Custom strategies</span>
+                        </div>
+                    </div>
+                    <button class="pricing-button premium-button">Start Premium Trial</button>
+                </div>
+            </div>
+            
+            <div class="pricing-comparison">
+                <h3>Strategy Comparison</h3>
+                <div class="comparison-table">
+                    <div class="comparison-row header">
+                        <div class="comparison-cell">Feature</div>
+                        <div class="comparison-cell">Free Tier</div>
+                        <div class="comparison-cell">Premium</div>
+                    </div>
+                    <div class="comparison-row">
+                        <div class="comparison-cell">Expected APY</div>
+                        <div class="comparison-cell">8-12%</div>
+                        <div class="comparison-cell">15-25%</div>
+                    </div>
+                    <div class="comparison-row">
+                        <div class="comparison-cell">Supported Tokens</div>
+                        <div class="comparison-cell">USDC, USDT</div>
+                        <div class="comparison-cell">SOL, USDC, USDT, RAY, ORCA</div>
+                    </div>
+                    <div class="comparison-row">
+                        <div class="comparison-cell">Auto-rebalancing</div>
+                        <div class="comparison-cell">❌</div>
+                        <div class="comparison-cell">✅</div>
+                    </div>
+                    <div class="comparison-row">
+                        <div class="comparison-cell">Risk Management</div>
+                        <div class="comparison-cell">Basic</div>
+                        <div class="comparison-cell">Advanced</div>
                     </div>
                 </div>
             </div>
@@ -223,10 +353,16 @@
             <div class="cta-content">
                 <h2>Ready to Turn Your Expenses Into Income?</h2>
                 <p>Join thousands of users already earning passive income on their monthly bills</p>
-                <button class="cta-button large" onclick="scrollToCalculator()">
-                    <i class="fas fa-rocket"></i>
-                    Get Started Now
-                </button>
+                <div class="cta-buttons">
+                    <button class="cta-button large" onclick="scrollToCalculator()">
+                        <i class="fas fa-calculator"></i>
+                        Calculate Expenses
+                    </button>
+                    <button class="cta-button large secondary" onclick="scrollToPricing()">
+                        <i class="fas fa-star"></i>
+                        View Pricing
+                    </button>
+                </div>
             </div>
         </div>
     </section>
@@ -248,9 +384,9 @@
                 <div class="footer-section">
                     <h4>Product</h4>
                     <ul>
-                        <li><a href="#calculator">Calculator</a></li>
+                        <li><a href="#calculator">Expense Calculator</a></li>
+                        <li><a href="#pricing">Pricing</a></li>
                         <li><a href="#how-it-works">How It Works</a></li>
-                        <li><a href="#">Pricing</a></li>
                         <li><a href="#">FAQ</a></li>
                     </ul>
                 </div>

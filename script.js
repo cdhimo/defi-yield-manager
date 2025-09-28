@@ -139,6 +139,42 @@ function scrollToCalculator() {
     }, 1000);
 }
 
+// Scroll to pricing function
+function scrollToPricing() {
+    const pricingSection = document.getElementById('pricing');
+    pricingSection.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+    });
+}
+
+// Pricing button functionality
+function handlePricingButton(planType) {
+    if (planType === 'free') {
+        // Handle free tier signup
+        alert('Redirecting to free tier signup...');
+        // In a real app, this would redirect to signup page
+    } else if (planType === 'premium') {
+        // Handle premium signup
+        alert('Redirecting to premium trial signup...');
+        // In a real app, this would redirect to premium signup
+    }
+}
+
+// Add event listeners for pricing buttons
+document.addEventListener('DOMContentLoaded', function() {
+    const freeButton = document.querySelector('.free-button');
+    const premiumButton = document.querySelector('.premium-button');
+    
+    if (freeButton) {
+        freeButton.addEventListener('click', () => handlePricingButton('free'));
+    }
+    
+    if (premiumButton) {
+        premiumButton.addEventListener('click', () => handlePricingButton('premium'));
+    }
+});
+
 // Add interactive bill management simulation
 function createBillManagementSimulation() {
     const billCategories = [
