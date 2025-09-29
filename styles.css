@@ -620,6 +620,12 @@ input:checked + .slider:before {
     -webkit-text-fill-color: transparent;
     background-clip: text;
     letter-spacing: -0.02em;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.logo-text:hover {
+    transform: scale(1.05);
 }
 
 /* Modern Hero Section */
