@@ -1,293 +1,445 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pricing Plans - RepPayd</title>
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pricing Plans - RepPayd</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: #fff;
+      color: #111;
+    }
+
+    /* Navigation */
+    .navbar {
+      background: #fff;
+      border-bottom: 1px solid #e6e8eb;
+      padding: 15px 30px;
+    }
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .nav-logo {
+      font-weight: 700;
+      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .nav-logo a {
+      text-decoration: none;
+      color: #111;
+    }
+    .nav-menu a {
+      margin-left: 20px;
+      text-decoration: none;
+      font-weight: 500;
+      color: #444;
+    }
+    .nav-menu a.active {
+      color: #4f46e5;
+    }
+
+    /* Page Header */
+    .page-title {
+      text-align: center;
+      font-size: 2.2rem;
+      font-weight: 700;
+      margin-top: 40px;
+    }
+    .page-subtitle {
+      text-align: center;
+      color: #666;
+      margin-bottom: 3rem;
+    }
+
+    /* Billing Toggle */
+    .billing-toggle {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+      margin: 30px 0 50px;
+      font-weight: 500;
+      color: #333;
+    }
+    .billing-toggle .discount {
+      color: #10b981;
+      font-weight: 600;
+      margin-left: 4px;
+    }
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 48px;
+      height: 26px;
+    }
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #d1d5db;
+      transition: 0.4s;
+      border-radius: 34px;
+    }
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 18px;
+      width: 18px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      transition: 0.4s;
+      border-radius: 50%;
+    }
+    input:checked + .slider {
+      background-color: #4f46e5;
+    }
+    input:checked + .slider:before {
+      transform: translateX(22px);
+    }
+
+    /* Pricing Cards */
+    .pricing {
+      padding: 60px 20px;
+      background: #f9fafc;
+    }
+    .pricing-cards.two-column {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 30px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .pricing-card {
+      background: #fff;
+      border: 1px solid #e6e8eb;
+      border-radius: 16px;
+      padding: 30px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .pricing-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+    }
+    .pricing-card.featured {
+      border: 2px solid #4f46e5;
+      box-shadow: 0 12px 30px rgba(79, 70, 229, 0.15);
+    }
+    .plan-badge {
+      background: #4f46e5;
+      color: #fff;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      display: inline-block;
+      margin-bottom: 12px;
+    }
+    .plan-header h3 {
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+    .plan-price {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #111;
+    }
+    .plan-price .currency {
+      font-size: 1.2rem;
+      vertical-align: super;
+    }
+    .plan-price .period {
+      font-size: 0.9rem;
+      color: #666;
+    }
+    .plan-description {
+      color: #666;
+      margin: 10px 0 20px;
+    }
+    .plan-features ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .plan-features li {
+      display: flex;
+      align-items: center;
+      margin-bottom: 12px;
+      font-size: 0.95rem;
+    }
+    .plan-features i {
+      color: #4f46e5;
+      margin-right: 10px;
+    }
+    .cta-button {
+      display: inline-block;
+      padding: 12px 20px;
+      background: #4f46e5;
+      color: #fff;
+      border-radius: 8px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.2s ease;
+    }
+    .cta-button:hover {
+      background: #3730a3;
+    }
+    .cta-button.secondary {
+      background: #e5e7eb;
+      color: #111;
+    }
+    .cta-button.secondary:hover {
+      background: #d1d5db;
+    }
+
+    /* Comparison Table */
+    .comparison-section {
+      padding: 80px 20px;
+      background: #fff;
+    }
+    .comparison-section .section-title {
+      text-align: center;
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 2rem;
+    }
+    .comparison-table {
+      max-width: 1000px;
+      margin: 0 auto;
+      overflow-x: auto;
+    }
+    .pricing-table {
+      width: 100%;
+      border-collapse: collapse;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+    }
+    .pricing-table thead {
+      background: #f3f4f6;
+    }
+    .pricing-table th,
+    .pricing-table td {
+      padding: 16px;
+      text-align: center;
+      border-bottom: 1px solid #e5e7eb;
+      font-size: 0.95rem;
+    }
+    .pricing-table th {
+      font-weight: 600;
+      color: #111;
+    }
+    .pricing-table tbody tr:first-child {
+      background: #f9fafc;
+      font-weight: 600;
+    }
+    .pricing-table tbody tr:hover {
+      background: #f9fafc;
+    }
+    .pricing-table th:nth-child(3),
+    .pricing-table td:nth-child(3) {
+      background: #eef2ff;
+      font-weight: 600;
+      color: #111;
+    }
+    @media (max-width: 768px) {
+      .pricing-cards.two-column {
+        grid-template-columns: 1fr;
+      }
+      .pricing-table {
+        font-size: 0.85rem;
+      }
+      .pricing-table th,
+      .pricing-table td {
+        padding: 12px;
+      }
+    }
+  </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-logo">
-                <i class="fas fa-coins"></i>
-                <a href="home.html" class="nav-brand">RepPayd</a>
-            </div>
-            <div class="nav-menu">
-                <a href="about.html" class="nav-link">About</a>
-                <a href="how-it-works.html" class="nav-link">How It Works</a>
-                <a href="calculator.html" class="nav-link">Calculator</a>
-                <a href="pricing.html" class="nav-link active">Pricing</a>
-                <a href="contact.html" class="nav-link">Contact</a>
-            </div>
-        </div>
-    </nav>
 
-    <!-- Page Header -->
-    <section class="page-header">
-        <div class="container">
-            <h1 class="page-title">Choose Your Plan</h1>
-            <p class="page-subtitle">Select the perfect plan for your financial goals</p>
-        </div>
-    </section>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="nav-logo">
+        <i class="fas fa-coins"></i>
+        <a href="index.html" class="nav-brand">RepPayd</a>
+      </div>
+      <div class="nav-menu">
+        <a href="about.html" class="nav-link">About</a>
+        <a href="how-it-works.html" class="nav-link">How It Works</a>
+        <a href="pricing.html" class="nav-link active">Pricing</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </div>
+    </div>
+  </nav>
 
-    <!-- Pricing Section -->
-    <section class="pricing">
-        <div class="container">
-            <div class="pricing-cards">
-                <div class="pricing-card">
-                    <div class="plan-header">
-                        <h3>Starter</h3>
-                        <div class="plan-price">
-                            <span class="currency">$</span>
-                            <span class="amount">0</span>
-                            <span class="period">/month</span>
-                        </div>
-                        <p class="plan-description">Perfect for getting started with automated bill payments</p>
-                    </div>
-                    
-                    <div class="plan-features">
-                        <ul>
-                            <li><i class="fas fa-check"></i> 8-12% APY</li>
-                            <li><i class="fas fa-check"></i> USDC & USDT support</li>
-                            <li><i class="fas fa-check"></i> Basic bill automation</li>
-                            <li><i class="fas fa-check"></i> Mobile app access</li>
-                            <li><i class="fas fa-check"></i> Email support</li>
-                            <li><i class="fas fa-check"></i> Up to $5,000 deposits</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="plan-cta">
-                        <a href="#" class="cta-button secondary">Get Started Free</a>
-                    </div>
-                </div>
-                
-                <div class="pricing-card featured">
-                    <div class="plan-badge">Most Popular</div>
-                    <div class="plan-header">
-                        <h3>Premium</h3>
-                        <div class="plan-price">
-                            <span class="currency">$</span>
-                            <span class="amount">29</span>
-                            <span class="period">/month</span>
-                        </div>
-                        <p class="plan-description">Advanced features for serious yield optimization</p>
-                    </div>
-                    
-                    <div class="plan-features">
-                        <ul>
-                            <li><i class="fas fa-check"></i> 15-25% APY</li>
-                            <li><i class="fas fa-check"></i> All supported tokens (SOL, USDC, USDT, RAY, ORCA)</li>
-                            <li><i class="fas fa-check"></i> Auto-rebalancing</li>
-                            <li><i class="fas fa-check"></i> Advanced risk management</li>
-                            <li><i class="fas fa-check"></i> Priority support</li>
-                            <li><i class="fas fa-check"></i> Unlimited deposits</li>
-                            <li><i class="fas fa-check"></i> Portfolio analytics</li>
-                            <li><i class="fas fa-check"></i> Custom strategies</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="plan-cta">
-                        <a href="#" class="cta-button">Start Premium Trial</a>
-                    </div>
-                </div>
-                
-                <div class="pricing-card">
-                    <div class="plan-header">
-                        <h3>Enterprise</h3>
-                        <div class="plan-price">
-                            <span class="currency">$</span>
-                            <span class="amount">Custom</span>
-                        </div>
-                        <p class="plan-description">Tailored solutions for businesses and institutions</p>
-                    </div>
-                    
-                    <div class="plan-features">
-                        <ul>
-                            <li><i class="fas fa-check"></i> Custom APY strategies</li>
-                            <li><i class="fas fa-check"></i> White-label solutions</li>
-                            <li><i class="fas fa-check"></i> Dedicated account manager</li>
-                            <li><i class="fas fa-check"></i> API access</li>
-                            <li><i class="fas fa-check"></i> Custom integrations</li>
-                            <li><i class="fas fa-check"></i> 24/7 phone support</li>
-                            <li><i class="fas fa-check"></i> Advanced reporting</li>
-                            <li><i class="fas fa-check"></i> Compliance tools</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="plan-cta">
-                        <a href="contact.html" class="cta-button secondary">Contact Sales</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+  <!-- Pricing Section -->
+  <section class="pricing">
+    <div class="container">
+      <h1 class="page-title">Choose Your Plan</h1>
+      <p class="page-subtitle">Simple plans built for everyone</p>
 
-    <!-- Comparison Table -->
-    <section class="comparison-section">
-        <div class="container">
-            <h2 class="section-title">Compare Plans</h2>
-            <div class="comparison-table">
-                <table class="pricing-table">
-                    <thead>
-                        <tr>
-                            <th>Feature</th>
-                            <th>Starter</th>
-                            <th>Premium</th>
-                            <th>Enterprise</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>APY Range</td>
-                            <td>8-12%</td>
-                            <td>15-25%</td>
-                            <td>Custom</td>
-                        </tr>
-                        <tr>
-                            <td>Supported Tokens</td>
-                            <td>USDC, USDT</td>
-                            <td>SOL, USDC, USDT, RAY, ORCA</td>
-                            <td>All tokens</td>
-                        </tr>
-                        <tr>
-                            <td>Auto-rebalancing</td>
-                            <td>❌</td>
-                            <td>✅</td>
-                            <td>✅</td>
-                        </tr>
-                        <tr>
-                            <td>Risk Management</td>
-                            <td>Basic</td>
-                            <td>Advanced</td>
-                            <td>Custom</td>
-                        </tr>
-                        <tr>
-                            <td>Deposit Limits</td>
-                            <td>Up to $5,000</td>
-                            <td>Unlimited</td>
-                            <td>Unlimited</td>
-                        </tr>
-                        <tr>
-                            <td>Support</td>
-                            <td>Email</td>
-                            <td>Priority</td>
-                            <td>24/7 Phone</td>
-                        </tr>
-                        <tr>
-                            <td>API Access</td>
-                            <td>❌</td>
-                            <td>❌</td>
-                            <td>✅</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </section>
+      <!-- Toggle -->
+      <div class="billing-toggle">
+        <span class="toggle-label">Monthly</span>
+        <label class="switch">
+          <input type="checkbox" id="billingToggle">
+          <span class="slider"></span>
+        </label>
+        <span class="toggle-label">Annual <span class="discount">-20%</span></span>
+      </div>
 
-    <!-- FAQ Section -->
-    <section class="faq-section">
-        <div class="container">
-            <h2 class="section-title">Frequently Asked Questions</h2>
-            
-            <div class="faq-grid">
-                <div class="faq-item">
-                    <h4>Can I change plans anytime?</h4>
-                    <p>Yes, you can upgrade or downgrade your plan at any time. Changes take effect immediately, and we'll prorate any billing differences.</p>
-                </div>
-                
-                <div class="faq-item">
-                    <h4>Are there any hidden fees?</h4>
-                    <p>No hidden fees. We only charge the monthly subscription fee for Premium and Enterprise plans. All yield earnings are yours to keep.</p>
-                </div>
-                
-                <div class="faq-item">
-                    <h4>What happens if I cancel?</h4>
-                    <p>You can cancel anytime. Your funds remain in your account, but automated features will be disabled. You can withdraw your funds at any time.</p>
-                </div>
-                
-                <div class="faq-item">
-                    <h4>Is there a free trial?</h4>
-                    <p>Yes! Premium plans come with a 14-day free trial. No credit card required to start.</p>
-                </div>
+      <div class="pricing-cards two-column">
+        <!-- Free Plan -->
+        <div class="pricing-card">
+          <div class="plan-header">
+            <h3>Free</h3>
+            <div class="plan-price">
+              <span class="currency">$</span>
+              <span class="amount">0</span>
+              <span class="period">/month</span>
             </div>
+            <p class="plan-description">Perfect for getting started with RepPayd</p>
+          </div>
+          <div class="plan-features">
+            <ul>
+              <li><i class="fas fa-check"></i> 8–12% APY</li>
+              <li><i class="fas fa-check"></i> USDC & USDT support</li>
+              <li><i class="fas fa-check"></i> Basic bill automation</li>
+              <li><i class="fas fa-check"></i> Up to $5,000 deposits</li>
+              <li><i class="fas fa-check"></i> Email support</li>
+            </ul>
+          </div>
+          <div class="plan-cta">
+            <a href="#" class="cta-button secondary">Get Started Free</a>
+          </div>
         </div>
-    </section>
 
-    <!-- CTA Section -->
-    <section class="cta-section">
-        <div class="container">
-            <div class="cta-content">
-                <h2>Ready to Start Earning?</h2>
-                <p>Choose your plan and start turning expenses into income today</p>
-                <div class="cta-buttons">
-                    <a href="calculator.html" class="cta-button large">
-                        <i class="fas fa-calculator"></i>
-                        Calculate Your Earnings
-                    </a>
-                    <a href="#" class="cta-button large secondary">
-                        <i class="fas fa-rocket"></i>
-                        Start Free Trial
-                    </a>
-                </div>
+        <!-- Premium Plan -->
+        <div class="pricing-card featured">
+          <div class="plan-badge">Most Popular</div>
+          <div class="plan-header">
+            <h3>Premium</h3>
+            <div class="plan-price">
+              <span class="currency">$</span>
+              <span class="amount" id="premiumPrice">29</span>
+              <span class="period">/month</span>
             </div>
+            <p class="plan-description">Advanced tools for serious yield optimization</p>
+          </div>
+          <div class="plan-features">
+            <ul>
+              <li><i class="fas fa-check"></i> 15–25% APY</li>
+              <li><i class="fas fa-check"></i> All supported tokens (SOL, USDC, USDT, RAY, ORCA)</li>
+              <li><i class="fas fa-check"></i> Auto-rebalancing & custom strategies</li>
+              <li><i class="fas fa-check"></i> Unlimited deposits</li>
+              <li><i class="fas fa-check"></i> Portfolio analytics</li>
+              <li><i class="fas fa-check"></i> Priority support</li>
+            </ul>
+          </div>
+          <div class="plan-cta">
+            <a href="#" class="cta-button">Start Premium Trial</a>
+          </div>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>RepPayd</h3>
-                    <p>Making your money work for you, one bill at a time.</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-discord"></i></a>
-                        <a href="#"><i class="fab fa-telegram"></i></a>
-                    </div>
-                </div>
-                
-                <div class="footer-section">
-                    <h4>Product</h4>
-                    <ul>
-                        <li><a href="calculator.html">Expense Calculator</a></li>
-                        <li><a href="pricing.html">Pricing</a></li>
-                        <li><a href="how-it-works.html">How It Works</a></li>
-                        <li><a href="#">FAQ</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-section">
-                    <h4>Support</h4>
-                    <ul>
-                        <li><a href="#">Help Center</a></li>
-                        <li><a href="contact.html">Contact Us</a></li>
-                        <li><a href="#">Status</a></li>
-                        <li><a href="#">Security</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-section">
-                    <h4>Legal</h4>
-                    <ul>
-                        <li><a href="#">Terms of Service</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Disclaimer</a></li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="footer-bottom">
-                <p>&copy; 2024 RepPayd. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
+  <!-- Comparison Table -->
+  <section class="comparison-section">
+    <div class="container">
+      <h2 class="section-title">Compare Plans</h2>
+      <div class="comparison-table">
+        <table class="pricing-table">
+          <thead>
+            <tr>
+              <th>Feature</th>
+              <th>Free</th>
+              <th>Premium</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Price</td>
+              <td><span id="freePrice">$0</span> /month</td>
+              <td><span id="premiumTablePrice">$29</span> /month</td>
+            </tr>
+            <tr>
+              <td>APY Range</td>
+              <td>8–12%</td>
+              <td>15–25%</td>
+            </tr>
+            <tr>
+              <td>Supported Tokens</td>
+              <td>USDC, USDT</td>
+              <td>SOL, USDC, USDT, RAY, ORCA</td>
+            </tr>
+            <tr>
+              <td>Deposit Limits</td>
+              <td>Up to $5,000</td>
+              <td>Unlimited</td>
+            </tr>
+            <tr>
+              <td>Automation</td>
+              <td>Basic bill automation</td>
+              <td>Auto-rebalancing & custom strategies</td>
+            </tr>
+            <tr>
+              <td>Support</td>
+              <td>Email</td>
+              <td>Priority</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
 
-    <script src="script.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const billingToggle = document.getElementById("billingToggle");
+      const premiumCardPrice = document.getElementById("premiumPrice");
+      const premiumTablePrice = document.getElementById("premiumTablePrice");
+
+      billingToggle.addEventListener("change", () => {
+        if (billingToggle.checked) {
+          // Annual pricing
+          premiumCardPrice.textContent = "278";
+          premiumCardPrice.nextElementSibling.textContent = "/year";
+
+          premiumTablePrice.textContent = "$278";
+          premiumTablePrice.parentNode.innerHTML = `<span id="premiumTablePrice">$278</span> /year`;
+        } else {
+          // Monthly pricing
+          premiumCardPrice.textContent = "29";
+          premiumCardPrice.nextElementSibling.textContent = "/month`;
+
+          premiumTablePrice.textContent = "$29";
+          premiumTablePrice.parentNode.innerHTML = `<span id="premiumTablePrice">$29</span> /month`;
+        }
+      });
+    });
+  </script>
 </body>
 </html>
