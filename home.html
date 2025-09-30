@@ -76,36 +76,70 @@
                 <div class="hero-calculator">
                     <div class="calculator-widget">
                         <h3>Calculate Your Potential Earnings</h3>
+                        
+                        <!-- Enhanced Calculator with Sliders -->
                         <div class="calc-inputs">
+                            <!-- Initial Deposit Slider -->
                             <div class="input-group">
-                                <label>Monthly Expenses</label>
-                                <div class="input-wrapper">
-                                    <span class="currency">$</span>
-                                    <input type="number" id="monthlyExpenses" placeholder="2,500" value="2500">
+                                <label for="depositSlider">Initial Deposit</label>
+                                <div class="slider-container">
+                                    <input type="range" id="depositSlider" min="1000" max="100000" value="10000" step="1000" class="slider">
+                                    <div class="slider-value">$<span id="depositValue">10,000</span></div>
                                 </div>
                             </div>
+                            
+                            <!-- Monthly Expenses Slider -->
                             <div class="input-group">
-                                <label>Yield Strategy</label>
-                                <select id="yieldStrategy">
-                                    <option value="12">Conservative (12% APY)</option>
-                                    <option value="18" selected>Balanced (18% APY)</option>
-                                    <option value="25">Aggressive (25% APY)</option>
+                                <label for="expensesSlider">Monthly Expenses</label>
+                                <div class="slider-container">
+                                    <input type="range" id="expensesSlider" min="500" max="10000" value="2000" step="100" class="slider">
+                                    <div class="slider-value">$<span id="expensesValue">2,000</span></div>
+                                </div>
+                            </div>
+                            
+                            <!-- Strategy Dropdown -->
+                            <div class="input-group">
+                                <label for="strategySelect">Yield Strategy</label>
+                                <select id="strategySelect" class="strategy-select">
+                                    <option value="conservative">Conservative (8-12% APY)</option>
+                                    <option value="moderate" selected>Moderate (15-18% APY)</option>
+                                    <option value="aggressive">Aggressive (20-25% APY)</option>
                                 </select>
                             </div>
+                            
+                            <!-- Time Horizon Slider -->
+                            <div class="input-group">
+                                <label for="timeSlider">Time Period</label>
+                                <div class="slider-container">
+                                    <input type="range" id="timeSlider" min="1" max="36" value="12" step="1" class="slider">
+                                    <div class="slider-value"><span id="timeValue">12</span> months</div>
+                                </div>
+                            </div>
                         </div>
+                        
+                        <!-- Results Display -->
                         <div class="calc-results">
                             <div class="result-item">
-                                <div class="result-label">Monthly Income</div>
-                                <div class="result-value" id="monthlyIncome">$37.50</div>
+                                <div class="result-label">Monthly Yield</div>
+                                <div class="result-value" id="monthlyYield">$125.00</div>
                             </div>
                             <div class="result-item highlight">
-                                <div class="result-label">Annual Income</div>
-                                <div class="result-value" id="annualIncome">$450</div>
+                                <div class="result-label">Bill Coverage</div>
+                                <div class="result-value" id="billCoverage">6.25%</div>
+                            </div>
+                            <div class="result-item">
+                                <div class="result-label">Annual Yield</div>
+                                <div class="result-value" id="annualYield">$1,500</div>
+                            </div>
+                            <div class="result-item">
+                                <div class="result-label">Total Value</div>
+                                <div class="result-value" id="totalValue">$11,500</div>
                             </div>
                         </div>
+                        
                         <div class="calc-note">
                             <i class="fas fa-info-circle"></i>
-                            <span>Your bills are paid automatically while earning yield</span>
+                            <span>Compound interest calculations with automatic bill payments</span>
                         </div>
                     </div>
                 </div>
@@ -301,30 +335,118 @@
     </footer>
 
     <script>
-        // Calculator functionality
+        // Enhanced YieldCalculator with State Management
         document.addEventListener('DOMContentLoaded', function() {
-            const monthlyExpensesInput = document.getElementById('monthlyExpenses');
-            const yieldStrategySelect = document.getElementById('yieldStrategy');
-            const monthlyIncomeDisplay = document.getElementById('monthlyIncome');
-            const annualIncomeDisplay = document.getElementById('annualIncome');
+            // State Management
+            const state = {
+                deposit: 10000,
+                monthlyExpenses: 2000,
+                strategy: 'moderate',
+                timeHorizon: 12,
+                results: null
+            };
 
-            function calculateIncome() {
-                const expenses = parseFloat(monthlyExpensesInput.value) || 0;
-                const yieldRate = parseFloat(yieldStrategySelect.value) || 18;
+            // Strategy APY mapping
+            const strategyAPY = {
+                conservative: { min: 8, max: 12, avg: 10 },
+                moderate: { min: 15, max: 18, avg: 16.5 },
+                aggressive: { min: 20, max: 25, avg: 22.5 }
+            };
+
+            // DOM Elements
+            const depositSlider = document.getElementById('depositSlider');
+            const expensesSlider = document.getElementById('expensesSlider');
+            const strategySelect = document.getElementById('strategySelect');
+            const timeSlider = document.getElementById('timeSlider');
+            
+            const depositValue = document.getElementById('depositValue');
+            const expensesValue = document.getElementById('expensesValue');
+            const timeValue = document.getElementById('timeValue');
+            
+            const monthlyYieldEl = document.getElementById('monthlyYield');
+            const billCoverageEl = document.getElementById('billCoverage');
+            const annualYieldEl = document.getElementById('annualYield');
+            const totalValueEl = document.getElementById('totalValue');
+
+            // Real-time Calculations with Compound Interest
+            function calculateResults() {
+                const deposit = state.deposit;
+                const monthlyExpenses = state.monthlyExpenses;
+                const months = state.timeHorizon;
+                const apy = strategyAPY[state.strategy].avg;
                 
-                // Calculate monthly income (assuming expenses are deposited for yield)
-                const monthlyIncome = (expenses * yieldRate / 100) / 12;
-                const annualIncome = expenses * yieldRate / 100;
+                // Compound Interest Formula: principal * (1 + monthlyRate)^months - principal
+                const monthlyRate = apy / 100 / 12;
+                const totalYield = deposit * (Math.pow(1 + monthlyRate, months) - 1);
+                const monthlyYield = totalYield / months;
+                const annualYield = deposit * (apy / 100);
+                const totalValue = deposit + totalYield;
+                const billCoverage = (monthlyYield / monthlyExpenses) * 100;
+
+                // Update state
+                state.results = {
+                    monthlyYield,
+                    billCoverage,
+                    annualYield,
+                    totalValue,
+                    totalYield
+                };
+
+                // Update UI
+                updateResults();
                 
-                monthlyIncomeDisplay.textContent = '$' + monthlyIncome.toFixed(2);
-                annualIncomeDisplay.textContent = '$' + annualIncome.toFixed(0);
+                // Save to localStorage for dashboard
+                localStorage.setItem('loopfi_calculator_results', JSON.stringify(state.results));
             }
 
-            monthlyExpensesInput.addEventListener('input', calculateIncome);
-            yieldStrategySelect.addEventListener('change', calculateIncome);
-            
-            // Initial calculation
-            calculateIncome();
+            function updateResults() {
+                const { monthlyYield, billCoverage, annualYield, totalValue } = state.results;
+                
+                monthlyYieldEl.textContent = formatCurrency(monthlyYield);
+                billCoverageEl.textContent = billCoverage.toFixed(1) + '%';
+                annualYieldEl.textContent = formatCurrency(annualYield);
+                totalValueEl.textContent = formatCurrency(totalValue);
+            }
+
+            function formatCurrency(amount) {
+                return new Intl.NumberFormat('en-US', {
+                    style: 'currency',
+                    currency: 'USD',
+                    minimumFractionDigits: 0,
+                    maximumFractionDigits: 0
+                }).format(amount);
+            }
+
+            function formatNumber(num) {
+                return new Intl.NumberFormat('en-US').format(num);
+            }
+
+            // Event Listeners
+            depositSlider.addEventListener('input', function() {
+                state.deposit = parseInt(this.value);
+                depositValue.textContent = formatNumber(state.deposit);
+                calculateResults();
+            });
+
+            expensesSlider.addEventListener('input', function() {
+                state.monthlyExpenses = parseInt(this.value);
+                expensesValue.textContent = formatNumber(state.monthlyExpenses);
+                calculateResults();
+            });
+
+            strategySelect.addEventListener('change', function() {
+                state.strategy = this.value;
+                calculateResults();
+            });
+
+            timeSlider.addEventListener('input', function() {
+                state.timeHorizon = parseInt(this.value);
+                timeValue.textContent = state.timeHorizon;
+                calculateResults();
+            });
+
+            // Initialize calculator
+            calculateResults();
         });
     </script>
 </body>
