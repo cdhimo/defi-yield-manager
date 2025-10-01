@@ -75,27 +75,17 @@
                 
                 <div class="hero-calculator">
                     <div class="calculator-widget">
-                        <h3>Calculate Your Potential Earnings</h3>
+                        <h3>Calculate Your Cash Back</h3>
                         
-                        <!-- Simplified Calculator -->
+                        <!-- Ultra-Simple Calculator -->
                         <div class="calc-inputs">
-                            <!-- Monthly Expenses Slider -->
+                            <!-- Monthly Expenses Input -->
                             <div class="input-group">
-                                <label for="expensesSlider">Monthly Expenses</label>
-                                <div class="slider-container">
-                                    <input type="range" id="expensesSlider" min="500" max="10000" value="2000" step="100" class="slider">
-                                    <div class="slider-value">$<span id="expensesValue">2,000</span></div>
+                                <label for="expensesInput">Monthly Expenses</label>
+                                <div class="input-wrapper">
+                                    <span class="currency">$</span>
+                                    <input type="number" id="expensesInput" value="2000" min="100" max="50000" step="100" placeholder="Enter amount">
                                 </div>
-                            </div>
-                            
-                            <!-- Strategy Dropdown -->
-                            <div class="input-group">
-                                <label for="strategySelect">Yield Strategy</label>
-                                <select id="strategySelect" class="strategy-select">
-                                    <option value="conservative">Base (5% APY)</option>
-                                    <option value="moderate" selected>Medium (12% APY)</option>
-                                    <option value="aggressive">High (25% APY)</option>
-                                </select>
                             </div>
                             
                             <!-- Time Horizon Slider -->
@@ -108,25 +98,30 @@
                             </div>
                         </div>
                         
-                        <!-- Results Display -->
-                        <div class="calc-results">
-                            <div class="result-item highlight">
-                                <div class="result-label">Potential Earnings</div>
-                                <div class="result-value" id="totalEarnings">$1,200</div>
-                            </div>
-                            <div class="result-item">
-                                <div class="result-label">Monthly Yield</div>
-                                <div class="result-value" id="monthlyYield">$100</div>
-                            </div>
-                            <div class="result-item">
-                                <div class="result-label">Bill Coverage</div>
-                                <div class="result-value" id="billCoverage">5%</div>
+                        <!-- Simple Chart -->
+                        <div class="simple-chart">
+                            <div class="chart-container">
+                                <svg id="earningsChart" width="100%" height="120" viewBox="0 0 300 120">
+                                    <defs>
+                                        <linearGradient id="chartGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                                            <stop offset="0%" style="stop-color:#1d4ed8;stop-opacity:0.8" />
+                                            <stop offset="100%" style="stop-color:#1d4ed8;stop-opacity:0.2" />
+                                        </linearGradient>
+                                    </defs>
+                                    <path id="chartPath" d="" fill="url(#chartGradient)" stroke="#1d4ed8" stroke-width="2"/>
+                                </svg>
                             </div>
                         </div>
                         
+                        <!-- Cash Back Result -->
+                        <div class="cash-back-result">
+                            <div class="cash-back-label">Total Cash Back</div>
+                            <div class="cash-back-amount" id="cashBackAmount">$1,200</div>
+                        </div>
+                        
                         <div class="calc-note">
-                            <i class="fas fa-info-circle"></i>
-                            <span>Earnings based on your monthly expenses earning yield</span>
+                            <i class="fas fa-chart-line"></i>
+                            <span>Earn 12% APY on your monthly expenses</span>
                         </div>
                     </div>
                 </div>
@@ -322,64 +317,77 @@
     </footer>
 
     <script>
-        // Simplified YieldCalculator
+        // Ultra-Simple Cash Back Calculator
         document.addEventListener('DOMContentLoaded', function() {
             // State Management
             const state = {
                 monthlyExpenses: 2000,
-                strategy: 'moderate',
                 timeHorizon: 12,
-                results: null
-            };
-
-            // Strategy APY mapping - Updated values
-            const strategyAPY = {
-                conservative: 5,    // Base 5%
-                moderate: 12,      // Medium 12%
-                aggressive: 25      // High 25%
+                apy: 12 // Fixed 12% APY
             };
 
             // DOM Elements
-            const expensesSlider = document.getElementById('expensesSlider');
-            const strategySelect = document.getElementById('strategySelect');
+            const expensesInput = document.getElementById('expensesInput');
             const timeSlider = document.getElementById('timeSlider');
-            
-            const expensesValue = document.getElementById('expensesValue');
             const timeValue = document.getElementById('timeValue');
-            
-            const totalEarningsEl = document.getElementById('totalEarnings');
-            const monthlyYieldEl = document.getElementById('monthlyYield');
-            const billCoverageEl = document.getElementById('billCoverage');
+            const cashBackAmount = document.getElementById('cashBackAmount');
+            const chartPath = document.getElementById('chartPath');
 
-            // Simplified Calculations
-            function calculateResults() {
+            // Calculate Cash Back with Exponential Growth
+            function calculateCashBack() {
                 const monthlyExpenses = state.monthlyExpenses;
                 const months = state.timeHorizon;
-                const apy = strategyAPY[state.strategy];
+                const monthlyRate = state.apy / 100 / 12;
                 
-                // Simple calculation: monthly expenses earning yield over time
-                const monthlyRate = apy / 100 / 12;
-                const totalEarnings = monthlyExpenses * monthlyRate * months;
-                const monthlyYield = monthlyExpenses * monthlyRate;
-                const billCoverage = (monthlyYield / monthlyExpenses) * 100;
+                // Exponential growth calculation
+                let totalCashBack = 0;
+                let currentBalance = monthlyExpenses;
+                
+                for (let month = 1; month <= months; month++) {
+                    const monthlyEarnings = currentBalance * monthlyRate;
+                    totalCashBack += monthlyEarnings;
+                    currentBalance += monthlyExpenses + monthlyEarnings; // Add new expenses + earnings
+                }
 
-                // Update state
-                state.results = {
-                    totalEarnings,
-                    monthlyYield,
-                    billCoverage
-                };
-
-                // Update UI
-                updateResults();
+                return totalCashBack;
             }
 
-            function updateResults() {
-                const { totalEarnings, monthlyYield, billCoverage } = state.results;
+            // Generate Chart Data
+            function generateChartData() {
+                const monthlyExpenses = state.monthlyExpenses;
+                const months = state.timeHorizon;
+                const monthlyRate = state.apy / 100 / 12;
                 
-                totalEarningsEl.textContent = formatCurrency(totalEarnings);
-                monthlyYieldEl.textContent = formatCurrency(monthlyYield);
-                billCoverageEl.textContent = billCoverage.toFixed(1) + '%';
+                const points = [];
+                let currentBalance = monthlyExpenses;
+                let totalEarnings = 0;
+                
+                for (let month = 0; month <= months; month++) {
+                    const x = (month / months) * 280 + 10; // Scale to chart width
+                    const y = 110 - (totalEarnings / (monthlyExpenses * months * 0.5)) * 100; // Scale to chart height
+                    points.push(`${x},${Math.max(y, 10)}`);
+                    
+                    if (month < months) {
+                        const monthlyEarnings = currentBalance * monthlyRate;
+                        totalEarnings += monthlyEarnings;
+                        currentBalance += monthlyExpenses + monthlyEarnings;
+                    }
+                }
+                
+                return `M ${points.join(' L ')}`;
+            }
+
+            // Update Chart
+            function updateChart() {
+                const pathData = generateChartData();
+                chartPath.setAttribute('d', pathData);
+            }
+
+            // Update Results
+            function updateResults() {
+                const cashBack = calculateCashBack();
+                cashBackAmount.textContent = formatCurrency(cashBack);
+                updateChart();
             }
 
             function formatCurrency(amount) {
@@ -391,30 +399,20 @@
                 }).format(amount);
             }
 
-            function formatNumber(num) {
-                return new Intl.NumberFormat('en-US').format(num);
-            }
-
             // Event Listeners
-            expensesSlider.addEventListener('input', function() {
-                state.monthlyExpenses = parseInt(this.value);
-                expensesValue.textContent = formatNumber(state.monthlyExpenses);
-                calculateResults();
-            });
-
-            strategySelect.addEventListener('change', function() {
-                state.strategy = this.value;
-                calculateResults();
+            expensesInput.addEventListener('input', function() {
+                state.monthlyExpenses = parseInt(this.value) || 0;
+                updateResults();
             });
 
             timeSlider.addEventListener('input', function() {
                 state.timeHorizon = parseInt(this.value);
                 timeValue.textContent = state.timeHorizon;
-                calculateResults();
+                updateResults();
             });
 
             // Initialize calculator
-            calculateResults();
+            updateResults();
         });
     </script>
 </body>
