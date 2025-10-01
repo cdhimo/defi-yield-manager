@@ -1,36 +1,32 @@
 {
-  "name": "defi-yield-manager",
+  "name": "loopfi-website",
   "version": "1.0.0",
-  "description": "A DeFi website that helps users earn stablecoin yield on their monthly expenses while auto-paying bills",
-  "main": "index.html",
+  "description": "LoopFi - Turn Expenses into Income",
+  "main": "index.js",
   "scripts": {
-    "start": "npx http-server -p 3000 -o",
-    "dev": "npx live-server --port=3000 --open=/index.html",
-    "build": "echo 'No build process needed for static site'",
-    "serve": "npx serve -s . -l 3000"
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
   },
-  "keywords": [
-    "defi",
-    "yield-farming",
-    "stablecoin",
-    "cryptocurrency",
-    "personal-finance",
-    "automation",
-    "blockchain"
-  ],
-  "author": "DeFi Yield Manager",
-  "license": "MIT",
-  "devDependencies": {
-    "http-server": "^14.1.1",
-    "live-server": "^1.2.2",
-    "serve": "^14.2.1"
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.8.0",
+    "react-scripts": "5.0.1",
+    "framer-motion": "^10.0.0",
+    "lucide-react": "^0.263.1"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/yourusername/defi-yield-manager.git"
-  },
-  "bugs": {
-    "url": "https://github.com/yourusername/defi-yield-manager/issues"
-  },
-  "homepage": "https://github.com/yourusername/defi-yield-manager#readme"
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
 }
