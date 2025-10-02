@@ -1524,6 +1524,59 @@ input:checked + .slider:before {
     box-shadow: 0 8px 25px rgba(29, 78, 216, 0.4);
 }
 
+/* Custom Select Dropdown Styles */
+.select-wrapper {
+    position: relative;
+    margin: 0.5rem 0;
+}
+
+.time-select {
+    width: 100%;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 12px 40px 12px 16px;
+    color: #1e293b;
+    font-size: 1rem;
+    font-weight: 500;
+    outline: none;
+    transition: all 0.3s ease;
+    appearance: none;
+    cursor: pointer;
+}
+
+.time-select:focus {
+    border-color: #1d4ed8;
+    box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.1);
+    background: white;
+}
+
+.time-select:hover {
+    border-color: #cbd5e1;
+    background: white;
+}
+
+.select-arrow {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #64748b;
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+
+.time-select:focus + .select-arrow {
+    color: #1d4ed8;
+}
+
+.time-select option {
+    background: white;
+    color: #1e293b;
+    padding: 8px;
+    font-weight: 500;
+}
+
 /* Simple Chart Styles */
 .simple-chart {
     margin: 1.5rem 0;

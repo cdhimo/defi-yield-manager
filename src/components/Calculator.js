@@ -88,19 +88,25 @@ const Calculator = () => {
           </div>
           
           <div className="input-group">
-            <label htmlFor="timeSlider">How long will you use LoopFi?</label>
-            <div className="slider-container">
-              <input
-                type="range"
-                id="timeSlider"
-                min="1"
-                max="24"
+            <label htmlFor="timeSelect">How long will you use LoopFi?</label>
+            <div className="select-wrapper">
+              <select
+                id="timeSelect"
                 value={timeHorizon}
                 onChange={(e) => setTimeHorizon(parseInt(e.target.value))}
-                className="slider"
-              />
-              <div className="slider-value">
-                <span>{timeHorizon}</span> months
+                className="time-select"
+              >
+                <option value={6}>6 months</option>
+                <option value={12}>12 months</option>
+                <option value={18}>18 months</option>
+                <option value={24}>24 months</option>
+                <option value={30}>30 months</option>
+                <option value={36}>36 months</option>
+                <option value={48}>48 months</option>
+                <option value={60}>60 months</option>
+              </select>
+              <div className="select-arrow">
+                <i className="fas fa-chevron-down"></i>
               </div>
             </div>
           </div>
