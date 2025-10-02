@@ -69,3 +69,16 @@ logs
 # Temporary files
 tmp/
 temp/
+
+# React build output
+build/
+
+# Node.js installation files
+node-v*/
+node.tar.gz
+
+# Development scripts
+start-dev.sh
+
+# Documentation files
+setup-github-pages.md

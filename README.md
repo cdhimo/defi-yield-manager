@@ -13,7 +13,7 @@ A modern React application that helps users turn their monthly expenses into pas
 ## 🛠️ Tech Stack
 
 - **React 18**: Modern React with hooks and functional components
-- **React Router**: Client-side routing
+- **React Router**: Client-side routing with HashRouter for GitHub Pages compatibility
 - **Framer Motion**: Smooth animations and transitions
 - **CSS3**: Custom styling with gradients and modern effects
 - **Font Awesome**: Icons throughout the application
@@ -41,15 +41,15 @@ src/
 
 ### Calculator Component
 - Real-time calculations based on monthly expenses and time period
+- Clean dropdown selector (6-60 months)
 - Animated SVG chart showing exponential growth
 - Smooth number input with currency formatting
-- Interactive slider for time period selection
 
 ### Navigation
 - Fixed navbar with scroll effects
 - Active page highlighting
 - Smooth hover animations
-- Responsive mobile design
+- HashRouter for GitHub Pages compatibility
 
 ### Pages
 - **Home**: Hero section with calculator and feature highlights
@@ -68,20 +68,48 @@ src/
 
 ## 🚀 Getting Started
 
-1. **Install Dependencies**
+### Prerequisites
+- Node.js 18+ installed
+- npm or yarn package manager
+
+### Installation
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/cdhimo/defi-yield-manager.git
+   cd defi-yield-manager
+   ```
+
+2. **Install dependencies**
    ```bash
    npm install
    ```
 
-2. **Start Development Server**
+3. **Start development server**
    ```bash
    npm start
    ```
 
-3. **Build for Production**
+4. **Build for production**
    ```bash
    npm run build
    ```
+
+## 🌐 GitHub Pages Deployment
+
+The app is configured for GitHub Pages deployment:
+
+1. **Deploy to GitHub Pages**
+   ```bash
+   npm run deploy
+   ```
+
+2. **Configure GitHub Pages**
+   - Go to repository Settings → Pages
+   - Set Source to "Deploy from a branch"
+   - Select "gh-pages" branch
+   - Choose "/ (root)" folder
+
+3. **Live URL**: https://cdhimo.github.io/defi-yield-manager
 
 ## 📱 Responsive Design
 
