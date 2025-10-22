@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import Calculator from '../components/Calculator';
+import EarnSection from '../components/EarnSection';
 
 const Home = () => {
   const stats = [
@@ -226,6 +227,9 @@ const Home = () => {
           </div>
         </div>
       </section>
+
+      {/* Earn Section */}
+      <EarnSection />
 
       {/* CTA Section */}
       <section className="cta-modern">
