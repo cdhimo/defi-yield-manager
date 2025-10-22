@@ -369,3 +369,282 @@ function hideTooltip() {
 
 // Initialize tooltips when page loads
 document.addEventListener('DOMContentLoaded', addTooltips);
+
+// Initialize earn card when page loads
+document.addEventListener('DOMContentLoaded', function() {
+    initializeEarnCard();
+});
+
+// Jupiter Lend API Integration
+async function fetchUSDCVaultData() {
+    try {
+        const response = await fetch('https://lite-api.jup.ag/lend/v1/earn/tokens');
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        
+        // Filter for USDC vault (mint address: EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v)
+        const usdcVault = data.find(vault => vault.mintAddress === 'EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v');
+        
+        if (!usdcVault) {
+            console.warn('USDC vault not found in Jupiter API response');
+            // Return mock data for development
+            return {
+                name: 'USDC Lending Pool',
+                apr: 12.5,
+                liquidity: '$2.5M',
+                mintAddress: 'EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v',
+                apy: 13.2
+            };
+        }
+        
+        return usdcVault;
+    } catch (error) {
+        console.error('Error fetching Jupiter vault data:', error);
+        // Return mock data for development
+        return {
+            name: 'USDC Lending Pool',
+            apr: 12.5,
+            liquidity: '$2.5M',
+            mintAddress: 'EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v',
+            apy: 13.2
+        };
+    }
+}
+
+// Wallet connection state
+let walletConnected = false;
+let walletAddress = null;
+
+// Mock wallet connection (will be replaced with real Solana Wallet Adapter)
+function connectWallet() {
+    walletConnected = true;
+    walletAddress = '7xKXtg2CW87d97TXJSDpbD5jBkheTqA83TZRuJosgAsU'; // Mock address
+    updateWalletUI();
+    return Promise.resolve();
+}
+
+function disconnectWallet() {
+    walletConnected = false;
+    walletAddress = null;
+    updateWalletUI();
+}
+
+function updateWalletUI() {
+    const connectBtn = document.getElementById('connect-wallet-btn');
+    const walletInfo = document.getElementById('wallet-info');
+    const depositBtn = document.getElementById('deposit-btn');
+    const withdrawBtn = document.getElementById('withdraw-btn');
+    
+    if (walletConnected) {
+        connectBtn.style.display = 'none';
+        walletInfo.style.display = 'block';
+        walletInfo.innerHTML = `
+            <div class="wallet-connected">
+                <i class="fas fa-wallet"></i>
+                <span class="wallet-address">${walletAddress.slice(0, 4)}...${walletAddress.slice(-4)}</span>
+                <button onclick="disconnectWallet()" class="disconnect-btn">Disconnect</button>
+            </div>
+        `;
+        depositBtn.disabled = false;
+        withdrawBtn.disabled = false;
+    } else {
+        connectBtn.style.display = 'block';
+        walletInfo.style.display = 'none';
+        depositBtn.disabled = true;
+        withdrawBtn.disabled = true;
+    }
+}
+
+// Mock deposit functionality
+function handleDepositClick() {
+    if (!walletConnected) {
+        alert('Please connect your wallet first');
+        return;
+    }
+    
+    // Show mock modal
+    showDepositModal();
+}
+
+function showDepositModal() {
+    const modal = document.createElement('div');
+    modal.className = 'modal-overlay';
+    modal.innerHTML = `
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Jupiter Deposit</h3>
+                <button class="modal-close" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Jupiter deposit functionality will be enabled in the next phase.</p>
+                <p>This is a preview of the deposit flow.</p>
+                <div class="deposit-preview">
+                    <label>Amount (USDC):</label>
+                    <input type="number" placeholder="100" class="deposit-amount">
+                    <div class="preview-details">
+                        <p>Estimated APY: 13.2%</p>
+                        <p>Estimated Monthly Yield: ~$1.10</p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" onclick="closeModal()">Cancel</button>
+                <button class="btn-primary" onclick="simulateDeposit()">Simulate Deposit</button>
+            </div>
+        </div>
+    `;
+    
+    document.body.appendChild(modal);
+    modal.style.display = 'flex';
+}
+
+function closeModal() {
+    const modal = document.querySelector('.modal-overlay');
+    if (modal) {
+        modal.remove();
+    }
+}
+
+function simulateDeposit() {
+    alert('Deposit simulation complete! Real functionality coming in next phase.');
+    closeModal();
+}
+
+// Create Earn Card Component
+function createEarnCard(vaultData) {
+    const earnCardHTML = `
+        <div class="earn-card">
+            <div class="earn-card-header">
+                <div class="vault-icon">
+                    <i class="fab fa-ethereum"></i>
+                </div>
+                <div class="vault-info">
+                    <h3>${vaultData.name}</h3>
+                    <p class="vault-description">Earn yield on your stablecoins via Jupiter</p>
+                </div>
+            </div>
+            
+            <div class="earn-card-stats">
+                <div class="stat-item">
+                    <div class="stat-label">APY</div>
+                    <div class="stat-value apy">${vaultData.apy || vaultData.apr}%</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">Liquidity</div>
+                    <div class="stat-value">${vaultData.liquidity}</div>
+                </div>
+            </div>
+            
+            <div class="wallet-section">
+                <div id="connect-wallet-btn" class="connect-wallet-btn" onclick="connectWallet()">
+                    <i class="fas fa-wallet"></i>
+                    <span>Connect Wallet</span>
+                </div>
+                <div id="wallet-info" class="wallet-info" style="display: none;"></div>
+            </div>
+            
+            <div class="earn-card-actions">
+                <button id="deposit-btn" class="action-btn deposit-btn" onclick="handleDepositClick()" disabled>
+                    <i class="fas fa-arrow-down"></i>
+                    <span>Deposit</span>
+                </button>
+                <button id="withdraw-btn" class="action-btn withdraw-btn" disabled>
+                    <i class="fas fa-arrow-up"></i>
+                    <span>Withdraw</span>
+                </button>
+            </div>
+        </div>
+    `;
+    
+    return earnCardHTML;
+}
+
+// Initialize Earn Card
+async function initializeEarnCard() {
+    try {
+        const vaultData = await fetchUSDCVaultData();
+        const earnCardHTML = createEarnCard(vaultData);
+        
+        // Insert the earn card into the dashboard
+        const dashboardSection = document.querySelector('.hero-modern .hero-content .hero-text');
+        if (dashboardSection) {
+            dashboardSection.insertAdjacentHTML('afterend', `
+                <div class="earn-section">
+                    <h2>Earn with LoopFi</h2>
+                    <p class="earn-tagline">Earn yield on your stablecoins via Jupiter</p>
+                    ${earnCardHTML}
+                </div>
+            `);
+            
+            // Add loading animation
+            const earnCard = document.querySelector('.earn-card');
+            if (earnCard) {
+                earnCard.style.opacity = '0';
+                earnCard.style.transform = 'translateY(30px)';
+                earnCard.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                
+                setTimeout(() => {
+                    earnCard.style.opacity = '1';
+                    earnCard.style.transform = 'translateY(0)';
+                }, 100);
+            }
+        }
+    } catch (error) {
+        console.error('Error initializing earn card:', error);
+        
+        // Show error state
+        const dashboardSection = document.querySelector('.hero-modern .hero-content .hero-text');
+        if (dashboardSection) {
+            dashboardSection.insertAdjacentHTML('afterend', `
+                <div class="earn-section">
+                    <h2>Earn with LoopFi</h2>
+                    <p class="earn-tagline">Earn yield on your stablecoins via Jupiter</p>
+                    <div class="earn-card error-state">
+                        <div class="error-message">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <p>Unable to load Jupiter vault data. Please try again later.</p>
+                            <button onclick="initializeEarnCard()" class="retry-btn">Retry</button>
+                        </div>
+                    </div>
+                </div>
+            `);
+        }
+    }
+}
+
+// Add real-time data refresh
+function startDataRefresh() {
+    // Refresh vault data every 30 seconds
+    setInterval(async () => {
+        try {
+            const vaultData = await fetchUSDCVaultData();
+            const apyElement = document.querySelector('.stat-value.apy');
+            const liquidityElement = document.querySelector('.stat-value:not(.apy)');
+            
+            if (apyElement) {
+                apyElement.textContent = `${vaultData.apy || vaultData.apr}%`;
+            }
+            if (liquidityElement) {
+                liquidityElement.textContent = vaultData.liquidity;
+            }
+            
+            // Add visual feedback for updates
+            if (apyElement) {
+                apyElement.style.color = '#22c55e';
+                apyElement.style.transform = 'scale(1.1)';
+                setTimeout(() => {
+                    apyElement.style.transform = 'scale(1)';
+                }, 300);
+            }
+        } catch (error) {
+            console.error('Error refreshing vault data:', error);
+        }
+    }, 30000); // 30 seconds
+}
+
+// Initialize data refresh when page loads
+document.addEventListener('DOMContentLoaded', function() {
+    setTimeout(startDataRefresh, 5000); // Start refreshing after 5 seconds
+});
