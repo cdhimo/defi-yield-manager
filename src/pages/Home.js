@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import Calculator from '../components/Calculator';
+import StablecoinChart from '../components/StablecoinChart';
 import EarnSection from '../components/EarnSection';
 
 const Home = () => {
@@ -128,7 +128,7 @@ const Home = () => {
               </div>
             </motion.div>
             
-            <Calculator />
+            <StablecoinChart />
           </div>
         </div>
       </section>

@@ -763,90 +763,125 @@ input:checked + .slider:before {
 
 .cta-secondary:hover { background: rgba(232, 252, 207, 0.9); }
 
-/* Hero Calculator */
-.hero-calculator {
-    position: relative;
+/* Stablecoin Chart */
+.stablecoin-chart {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
 }
 
-.calculator-widget {
+.chart-widget {
     background: rgba(232, 252, 207, 0.9);
     border-radius: 16px;
     padding: 2rem;
     box-shadow: 0 8px 24px rgba(150, 224, 114, 0.1);
     border: 1px solid #3da35d;
+    max-width: 500px;
+    width: 100%;
 }
 
-.calculator-widget h3 {
-    margin-bottom: 1.5rem;
+.chart-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.chart-header h3 {
+    margin-bottom: 0.5rem;
     font-weight: 600;
     font-size: 1.25rem;
     color: #e8fccf;
-    text-align: center;
 }
 
-.calc-inputs { margin-bottom: 1.5rem; }
-
-.input-group { margin-bottom: 1rem; }
-
-.input-group label {
-    display: block;
-    margin-bottom: 0.5rem;
+.chart-subtitle {
     color: #96e072;
     font-size: 0.9rem;
     font-weight: 500;
 }
 
-.input-wrapper {
-    display: flex;
-    align-items: center;
-    background: #3e8914;
-    border: 1px solid #3da35d;
-    border-radius: 10px;
-    padding: 0.5rem 1rem;
-}
-
-.input-wrapper input,
-.input-wrapper select {
-    flex: 1;
-    background: transparent;
-    border: none;
-    outline: none;
-    color: #e8fccf;
-    font-size: 1rem;
-}
-
-.currency { margin-right: 0.5rem; color: #96e072; }
-
-.calc-results {
-    margin: 1.5rem 0;
-    background: #3e8914;
-    border: 1px solid #3da35d;
+.chart-container {
+    margin-bottom: 1.5rem;
+    background: rgba(19, 70, 17, 0.1);
+    border-radius: 12px;
     padding: 1rem;
+}
+
+.supply-display {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background: rgba(19, 70, 17, 0.1);
     border-radius: 12px;
 }
 
-.result-item {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 0.75rem;
-    font-size: 1rem;
+.supply-label {
+    color: #96e072;
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
 }
 
-.result-item.highlight .result-value {
-    color: #96e072;
+.supply-amount {
+    font-size: 2.5rem;
     font-weight: 700;
+    color: #96e072;
+    margin-bottom: 0.5rem;
 }
 
-.calc-note {
-    font-size: 0.85rem;
-    color: #96e072;
+.supply-growth {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
     justify-content: center;
+    gap: 0.5rem;
+    color: #3da35d;
+    font-size: 0.9rem;
+    font-weight: 600;
 }
 
-.calc-note i { color: #96e072; }
+.supply-growth i {
+    color: #3da35d;
+}
+
+.chart-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.stat-item {
+    text-align: center;
+    padding: 1rem;
+    background: rgba(19, 70, 17, 0.1);
+    border-radius: 8px;
+}
+
+.stat-value {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #96e072;
+    margin-bottom: 0.25rem;
+}
+
+.stat-label {
+    font-size: 0.8rem;
+    color: #96e072;
+    font-weight: 500;
+}
+
+.chart-note {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    color: #96e072;
+    text-align: center;
+}
+
+.chart-note i {
+    color: #96e072;
+}
+
 
 
 /* Value Proposition Section */
