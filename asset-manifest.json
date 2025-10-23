@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/defi-yield-manager/static/css/main.4beefabb.css",
-    "main.js": "/defi-yield-manager/static/js/main.60ee7c6c.js",
+    "main.css": "/defi-yield-manager/static/css/main.9ce901b8.css",
+    "main.js": "/defi-yield-manager/static/js/main.9e1b7390.js",
     "index.html": "/defi-yield-manager/index.html",
-    "main.4beefabb.css.map": "/defi-yield-manager/static/css/main.4beefabb.css.map",
-    "main.60ee7c6c.js.map": "/defi-yield-manager/static/js/main.60ee7c6c.js.map"
+    "main.9ce901b8.css.map": "/defi-yield-manager/static/css/main.9ce901b8.css.map",
+    "main.9e1b7390.js.map": "/defi-yield-manager/static/js/main.9e1b7390.js.map"
   },
   "entrypoints": [
-    "static/css/main.4beefabb.css",
-    "static/js/main.60ee7c6c.js"
+    "static/css/main.9ce901b8.css",
+    "static/js/main.9e1b7390.js"
   ]
 }
