@@ -33,21 +33,6 @@ const Pricing = () => {
       ],
       cta: 'Start Pro',
       popular: true
-    },
-    {
-      name: 'Enterprise',
-      monthlyPrice: 29,
-      annualPrice: 290,
-      description: 'For high-volume users',
-      features: [
-        'Unlimited deposits',
-        'Custom yield strategies',
-        'Dedicated support',
-        'White-label options',
-        'API access'
-      ],
-      cta: 'Contact Sales',
-      popular: false
     }
   ];
 
