@@ -24,25 +24,38 @@ const Navbar = () => {
 
   return (
     <motion.nav 
-      className={`navbar ${isScrolled ? 'scrolled' : ''}`}
+      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
+        isScrolled 
+          ? 'bg-mint-pale/98 backdrop-blur-md shadow-lg shadow-mint-light/15' 
+          : 'bg-forest-dark/95 backdrop-blur-md'
+      }`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
     >
-      <div className="nav-container">
-        <div className="nav-logo">
-          <Link to="/" className="logo-text">
-            LoopFi
-          </Link>
-        </div>
-        <div className="nav-menu">
+      <div className="max-w-6xl mx-auto px-5 flex justify-between items-center h-16">
+        <Link to="/" className="text-2xl font-bold text-mint-light hover:text-mint-pale transition-colors">
+          LoopFi
+        </Link>
+        <div className="hidden md:flex items-center space-x-8">
           {navItems.map((item) => (
             <Link
               key={item.path}
               to={item.path}
-              className={`nav-link ${location.pathname === item.path ? 'active' : ''}`}
+              className={`font-medium transition-colors relative ${
+                location.pathname === item.path 
+                  ? 'text-mint-pale' 
+                  : 'text-mint-light hover:text-mint-pale'
+              }`}
             >
               {item.label}
+              {location.pathname === item.path && (
+                <motion.div
+                  className="absolute -bottom-1 left-0 right-0 h-0.5 bg-mint-pale rounded-full"
+                  layoutId="activeTab"
+                  transition={{ duration: 0.3 }}
+                />
+              )}
             </Link>
           ))}
         </div>
