@@ -74,15 +74,9 @@ const Home = () => {
 
   return (
     <div className="home-page">
-      {/* Hero Section */}
-      <section className="hero-modern">
-        <div className="hero-background">
-          <div className="floating-elements">
-            <div className="float-element" style={{'--delay': '0s', '--duration': '6s'}}></div>
-            <div className="float-element" style={{'--delay': '2s', '--duration': '8s'}}></div>
-            <div className="float-element" style={{'--delay': '4s', '--duration': '7s'}}></div>
-          </div>
-        </div>
+      {/* Modern Hero Section */}
+      <section className="hero-section">
+        <div className="hero-background"></div>
         
         <div className="container">
           <div className="hero-content">
@@ -128,33 +122,39 @@ const Home = () => {
               </div>
             </motion.div>
             
-            <StablecoinChart />
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            >
+              <StablecoinChart />
+            </motion.div>
           </div>
         </div>
       </section>
 
       {/* Value Proposition Section */}
-      <section className="value-prop">
+      <section className="content-section comparison-section">
         <div className="container">
           <div className="section-header">
-            <h2>Why LoopFi Changes Everything</h2>
-            <p>Traditional banking vs. DeFi innovation</p>
+            <h2 className="section-title">Why LoopFi Changes Everything</h2>
+            <p className="section-subtitle">Traditional banking vs. DeFi innovation</p>
           </div>
           
           <div className="comparison-grid">
             {comparisonData.map((item, index) => (
               <motion.div 
                 key={index}
-                className={`comparison-item ${item.type === 'modern' ? 'featured' : ''}`}
+                className={`comparison-card ${item.type === 'modern' ? 'featured' : ''}`}
                 initial={{ opacity: 0, y: 50 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.2 }}
               >
                 <div className="comparison-header">
-                  <div className={`icon ${item.type}`}>
+                  <div className={`comparison-icon ${item.type}`}>
                     <i className={item.icon}></i>
                   </div>
-                  <h3>{item.title}</h3>
+                  <h3 className="comparison-title">{item.title}</h3>
                 </div>
                 <ul className="comparison-list">
                   {item.features.map((feature, featureIndex) => (
@@ -171,11 +171,11 @@ const Home = () => {
       </section>
 
       {/* How It Works Section */}
-      <section className="how-it-works-modern">
+      <section className="content-section steps-section">
         <div className="container">
           <div className="section-header">
-            <h2>How LoopFi Works</h2>
-            <p>Simple setup, powerful results</p>
+            <h2 className="section-title">How LoopFi Works</h2>
+            <p className="section-subtitle">Simple setup, powerful results</p>
           </div>
           
           <div className="steps-flow">
@@ -205,23 +205,28 @@ const Home = () => {
       </section>
 
       {/* Features Section */}
-      <section className="features-modern">
+      <section className="content-section">
         <div className="container">
-          <div className="features-grid">
+          <div className="section-header">
+            <h2 className="section-title">Built for the Future</h2>
+            <p className="section-subtitle">Enterprise-grade features for everyday users</p>
+          </div>
+          
+          <div className="card-grid">
             {features.map((feature, index) => (
               <motion.div 
                 key={index}
-                className="feature-card"
+                className="card"
                 initial={{ opacity: 0, y: 50 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.2 }}
                 whileHover={{ y: -8 }}
               >
-                <div className="feature-icon">
+                <div className="card-icon">
                   <i className={feature.icon}></i>
                 </div>
-                <h3>{feature.title}</h3>
-                <p>{feature.description}</p>
+                <h3 className="card-title">{feature.title}</h3>
+                <p className="card-description">{feature.description}</p>
               </motion.div>
             ))}
           </div>
@@ -229,24 +234,28 @@ const Home = () => {
       </section>
 
       {/* Earn Section */}
-      <EarnSection />
+      <section className="content-section">
+        <div className="container">
+          <EarnSection />
+        </div>
+      </section>
 
       {/* CTA Section */}
-      <section className="cta-modern">
+      <section className="content-section cta-section">
         <div className="container">
-          <div className="cta-content">
-            <h2>Ready to Turn Your Expenses Into Income?</h2>
-            <p>Join the waitlist and be among the first to experience the future of personal finance</p>
-            <div className="cta-buttons">
-              <Link to="/contact" className="cta-button primary">
-                <i className="fas fa-envelope"></i>
-                <span>Get Early Access</span>
-              </Link>
-              <Link to="/pricing" className="cta-button secondary">
-                <i className="fas fa-star"></i>
-                <span>View Pricing</span>
-              </Link>
-            </div>
+          <div className="section-header">
+            <h2 className="section-title">Ready to Turn Your Expenses Into Income?</h2>
+            <p className="section-subtitle">Join the waitlist and be among the first to experience the future of personal finance</p>
+          </div>
+          <div className="cta-buttons">
+            <Link to="/contact" className="cta-button primary">
+              <i className="fas fa-envelope"></i>
+              <span>Get Early Access</span>
+            </Link>
+            <Link to="/pricing" className="cta-button secondary">
+              <i className="fas fa-star"></i>
+              <span>View Pricing</span>
+            </Link>
           </div>
         </div>
       </section>
