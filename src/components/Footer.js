@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import Logo from './Logo';
 
 const Footer = () => {
   const footerSections = [
@@ -48,7 +49,7 @@ const Footer = () => {
             transition={{ duration: 0.6 }}
           >
             <div className="footer-logo">
-              <img src="/logo.svg" alt="Vuno" className="logo-image" />
+              <Logo width={50} height={50} alt="Vuno" />
             </div>
             <p>Making your money work for you, one bill at a time.</p>
             <div className="social-links">

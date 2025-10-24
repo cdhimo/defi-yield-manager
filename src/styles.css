@@ -290,11 +290,6 @@ body::before {
     transform: scale(1.05);
 }
 
-.logo-image {
-    height: 40px;
-    width: auto;
-    transition: all 0.3s ease;
-}
 
 .nav-menu {
     display: flex;
@@ -332,25 +327,27 @@ body::before {
 
 /* Get Started Button Styling */
 .get-started-btn {
-    background: transparent;
+    background: var(--primary-blue);
     border: 2px solid var(--primary-blue);
     border-radius: 8px;
     padding: 0.75rem 1.5rem;
-    color: var(--primary-blue);
+    color: white;
     font-weight: 600;
     transition: all 0.3s ease;
     position: relative;
 }
 
 .get-started-btn:hover {
-    background: var(--primary-blue);
+    background: var(--dark-blue);
+    border-color: var(--dark-blue);
     color: white;
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0, 126, 167, 0.3);
 }
 
 .get-started-btn.active {
-    background: var(--primary-blue);
+    background: var(--dark-blue);
+    border-color: var(--dark-blue);
     color: white;
 }
 
@@ -890,13 +887,6 @@ body::before {
         margin-left: auto;
     }
     
-    .logo-image {
-        height: 35px;
-    }
-    
-    .footer-logo .logo-image {
-        height: 40px;
-    }
     
     .hero-stats {
         grid-template-columns: 1fr;
@@ -1696,13 +1686,7 @@ body::before {
     margin-bottom: 1rem;
 }
 
-.footer-logo .logo-image {
-    height: 50px;
-    width: auto;
-    transition: all 0.3s ease;
-}
-
-.footer-logo:hover .logo-image {
+.footer-logo:hover canvas {
     transform: scale(1.05);
 }
 

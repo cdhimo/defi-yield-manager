@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import Logo from './Logo';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -33,7 +34,7 @@ const Navbar = () => {
       <div className="nav-container">
         <div className="nav-left">
           <Link to="/" className="nav-logo">
-            <img src="/logo.svg" alt="Vuno" className="logo-image" />
+            <Logo width={40} height={40} alt="Vuno" />
           </Link>
           <div className="nav-menu">
             {navItems.map((item) => (
