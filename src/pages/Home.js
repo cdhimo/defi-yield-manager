@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import StablecoinChart from '../components/StablecoinChart';
+import AnimatedStats from '../components/AnimatedStats';
 import EarnSection from '../components/EarnSection';
 
 const Home = () => {
@@ -127,7 +127,7 @@ const Home = () => {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              <StablecoinChart />
+              <AnimatedStats />
             </motion.div>
           </div>
         </div>
