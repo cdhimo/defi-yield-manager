@@ -1,50 +1,49 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 
 const Logo = ({ width = 40, height = 40, className = "" }) => {
-  const canvasRef = useRef(null);
-
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-
-    const ctx = canvas.getContext('2d');
-    canvas.width = width;
-    canvas.height = height;
-
-    // Create gradient background
-    const gradient = ctx.createLinearGradient(0, 0, width, height);
-    gradient.addColorStop(0, '#003249');
-    gradient.addColorStop(1, '#007ea7');
-
-    // Fill background
-    ctx.fillStyle = gradient;
-    ctx.fillRect(0, 0, width, height);
-
-    // Create white triangle
-    ctx.fillStyle = 'white';
-    ctx.beginPath();
-    ctx.moveTo(width * 0.25, height * 0.75); // Bottom left
-    ctx.lineTo(width * 0.75, height * 0.75); // Bottom right
-    ctx.lineTo(width * 0.5, height * 0.25);  // Top center
-    ctx.closePath();
-    ctx.fill();
-
-    // Create inner blue mountain shape
-    ctx.fillStyle = gradient;
-    ctx.beginPath();
-    ctx.moveTo(width * 0.33, height * 0.75); // Bottom left
-    ctx.lineTo(width * 0.5, height * 0.33);  // Peak
-    ctx.lineTo(width * 0.67, height * 0.75); // Bottom right
-    ctx.closePath();
-    ctx.fill();
-  }, [width, height]);
-
   return (
-    <canvas
-      ref={canvasRef}
-      className={className}
-      style={{ display: 'block' }}
-    />
+    <div 
+      className={`logo-container ${className}`}
+      style={{ 
+        width: width, 
+        height: height,
+        position: 'relative',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center'
+      }}
+    >
+      {/* Triangle shape that flows with the background */}
+      <div 
+        style={{
+          width: width * 0.8,
+          height: height * 0.8,
+          background: 'rgba(255, 255, 255, 0.15)',
+          backdropFilter: 'blur(10px)',
+          WebkitBackdropFilter: 'blur(10px)',
+          clipPath: 'polygon(50% 0%, 0% 100%, 100% 100%)',
+          border: '1px solid rgba(255, 255, 255, 0.2)',
+          borderRadius: '2px',
+          position: 'relative',
+          overflow: 'hidden'
+        }}
+      >
+        {/* Inner mountain shape */}
+        <div 
+          style={{
+            position: 'absolute',
+            bottom: 0,
+            left: '50%',
+            transform: 'translateX(-50%)',
+            width: width * 0.4,
+            height: height * 0.6,
+            background: 'rgba(0, 126, 167, 0.3)',
+            clipPath: 'polygon(50% 100%, 0% 60%, 100% 60%)',
+            border: '1px solid rgba(255, 255, 255, 0.1)'
+          }}
+        />
+      </div>
+    </div>
   );
 };
 
