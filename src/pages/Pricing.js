@@ -1,44 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 
 const Pricing = () => {
-  const [isAnnual, setIsAnnual] = useState(false);
-
-  const plans = [
-    {
-      name: 'Starter',
-      monthlyPrice: 0,
-      annualPrice: 0,
-      description: 'Perfect for getting started',
-      features: [
-        'Up to $5,000 in deposits',
-        'Basic yield strategies',
-        'Email support',
-        'Standard automation'
-      ],
-      cta: 'Get Started',
-      popular: false
-    },
-    {
-      name: 'Pro',
-      monthlyPrice: 9,
-      annualPrice: 90,
-      description: 'Most popular for serious users',
-      features: [
-        'Up to $50,000 in deposits',
-        'Advanced yield strategies',
-        'Priority support',
-        'Advanced automation',
-        'Analytics dashboard'
-      ],
-      cta: 'Start Pro',
-      popular: true
-    }
-  ];
-
   return (
     <div className="pricing-page">
-      <section className="page-header">
+      {/* Header Section */}
+      <section className="hero-section">
         <div className="container">
           <motion.h1 
             className="page-title"
@@ -46,7 +13,7 @@ const Pricing = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            Simple, Transparent Pricing
+            Simple, transparent pricing
           </motion.h1>
           <motion.p 
             className="page-subtitle"
@@ -54,68 +21,148 @@ const Pricing = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            Choose the plan that fits your needs
+            Earn more, automate payments, no hidden fees.
           </motion.p>
+          
+          {/* Trust Strip */}
+          <motion.div 
+            className="trust-strip"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+          >
+            <div className="trust-items">
+              <span>🔒 Bank-grade encryption</span>
+              <span>💸 Withdraw anytime</span>
+              <span>📊 Transparent yield</span>
+            </div>
+          </motion.div>
         </div>
       </section>
 
-      <section className="pricing">
+      {/* Pricing Panels */}
+      <section className="pricing-content">
         <div className="container">
-          <div className="billing-toggle">
-            <span className={!isAnnual ? 'active' : ''}>Monthly</span>
-            <div className="switch">
-              <input 
-                type="checkbox" 
-                checked={isAnnual}
-                onChange={(e) => setIsAnnual(e.target.checked)}
-              />
-              <span className="slider"></span>
+          <div className="pricing-grid">
+            {/* Starter Card */}
+            <motion.div 
+              className="pricing-card starter-card"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+            >
+              <div className="card-header">
+                <h3 className="plan-name">Starter</h3>
+                <div className="price">
+                  <span className="currency">$</span>
+                  <span className="amount">0</span>
+                  <span className="period">/ month</span>
+                </div>
+                <p className="description">Perfect for individuals getting started.</p>
+              </div>
+              
+              <div className="features">
+                <ul>
+                  <li>✅ Up to $5,000 deposits</li>
+                  <li>✅ Standard yield vaults</li>
+                  <li>✅ Email support</li>
+                  <li>✅ Basic analytics</li>
+                </ul>
+              </div>
+              
+              <button className="cta-button starter-cta">Start Free</button>
+            </motion.div>
+
+            {/* Pro Card - Highlighted */}
+            <motion.div 
+              className="pricing-card pro-card featured"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+            >
+              <div className="featured-badge">Most Popular</div>
+              <div className="card-header">
+                <h3 className="plan-name">Pro</h3>
+                <div className="price">
+                  <span className="currency">$</span>
+                  <span className="amount">9</span>
+                  <span className="period">/ month</span>
+                </div>
+                <p className="description">For power users automating yield and bills.</p>
+              </div>
+              
+              <div className="features">
+                <ul>
+                  <li>✅ Up to $50,000 deposits</li>
+                  <li>✅ Advanced yield vaults</li>
+                  <li>✅ Priority support</li>
+                  <li>✅ Automation rules</li>
+                  <li>✅ Analytics dashboard</li>
+                </ul>
+              </div>
+              
+              <button className="cta-button pro-cta">Upgrade to Pro</button>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Enterprise Section */}
+      <section className="enterprise-section">
+        <div className="container">
+          <motion.div 
+            className="enterprise-content"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.5 }}
+          >
+            <h3>Need higher limits or API access?</h3>
+            <div className="enterprise-buttons">
+              <button className="cta-button primary">Get a Quote</button>
+              <button className="cta-button secondary">Book a Demo</button>
             </div>
-            <span className={isAnnual ? 'active' : ''}>
-              Annual
-              <span className="discount">Save 17%</span>
-            </span>
-          </div>
+          </motion.div>
+        </div>
+      </section>
 
-          <div className="pricing-cards">
-            {plans.map((plan, index) => (
-              <motion.div 
-                key={index}
-                className={`pricing-card ${plan.popular ? 'featured' : ''}`}
-                initial={{ opacity: 0, y: 50 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                whileHover={{ y: -8 }}
-              >
-                {plan.popular && <div className="plan-badge">Most Popular</div>}
-                
-                <div className="plan-header">
-                  <h3>{plan.name}</h3>
-                  <div className="plan-price">
-                    <span className="currency">$</span>
-                    {isAnnual ? plan.annualPrice : plan.monthlyPrice}
-                    <span className="period">/{isAnnual ? 'year' : 'month'}</span>
-                  </div>
-                  <p className="plan-description">{plan.description}</p>
-                </div>
+      {/* Testimonial Section */}
+      <section className="testimonial-section">
+        <div className="container">
+          <motion.div 
+            className="testimonial-content"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+          >
+            <blockquote className="testimonial-quote">
+              "Vuno helps me earn yield while paying bills automatically."
+            </blockquote>
+            <div className="testimonial-author">
+              <span className="author-name">Alex M.</span>
+              <span className="author-role">Early Beta User</span>
+            </div>
+          </motion.div>
+        </div>
+      </section>
 
-                <div className="plan-features">
-                  <ul>
-                    {plan.features.map((feature, featureIndex) => (
-                      <li key={featureIndex}>
-                        <i className="fas fa-check"></i>
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                <a href="#" className="cta-button">
-                  {plan.cta}
-                </a>
-              </motion.div>
-            ))}
-          </div>
+      {/* Partner Logos */}
+      <section className="partner-logos-section">
+        <div className="container">
+          <motion.div 
+            className="partner-logos"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.7 }}
+          >
+            <h4>Trusted by partners</h4>
+            <div className="logos-grid">
+              <div className="logo-item">Solana</div>
+              <div className="logo-item">Circle</div>
+              <div className="logo-item">Plaid</div>
+              <div className="logo-item">Jupiter</div>
+              <div className="logo-item">Accenture</div>
+            </div>
+          </motion.div>
         </div>
       </section>
     </div>
