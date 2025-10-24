@@ -48,7 +48,7 @@ const Footer = () => {
             transition={{ duration: 0.6 }}
           >
             <div className="footer-logo">
-              <div className="logo-text">Vuno</div>
+              <img src="/logo.svg" alt="Vuno" className="logo-image" />
             </div>
             <p>Making your money work for you, one bill at a time.</p>
             <div className="social-links">

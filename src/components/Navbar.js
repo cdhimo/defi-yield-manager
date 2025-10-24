@@ -18,9 +18,10 @@ const Navbar = () => {
   const navItems = [
     { path: '/about', label: 'About' },
     { path: '/how-it-works', label: 'How It Works' },
-    { path: '/pricing', label: 'Pricing' },
     { path: '/contact', label: 'Contact' }
   ];
+
+  const getStartedItem = { path: '/pricing', label: 'Get Started' };
 
   return (
     <motion.nav 
@@ -30,19 +31,29 @@ const Navbar = () => {
       transition={{ duration: 0.5 }}
     >
       <div className="nav-container">
-        <Link to="/" className="nav-logo">
-          Vuno
-        </Link>
-        <div className="nav-menu">
-          {navItems.map((item) => (
-            <Link
-              key={item.path}
-              to={item.path}
-              className={`nav-link ${location.pathname === item.path ? 'active' : ''}`}
-            >
-              {item.label}
-            </Link>
-          ))}
+        <div className="nav-left">
+          <Link to="/" className="nav-logo">
+            <img src="/logo.svg" alt="Vuno" className="logo-image" />
+          </Link>
+          <div className="nav-menu">
+            {navItems.map((item) => (
+              <Link
+                key={item.path}
+                to={item.path}
+                className={`nav-link ${location.pathname === item.path ? 'active' : ''}`}
+              >
+                {item.label}
+              </Link>
+            ))}
+          </div>
+        </div>
+        <div className="nav-right">
+          <Link
+            to={getStartedItem.path}
+            className={`nav-link get-started-btn ${location.pathname === getStartedItem.path ? 'active' : ''}`}
+          >
+            {getStartedItem.label}
+          </Link>
         </div>
       </div>
     </motion.nav>
