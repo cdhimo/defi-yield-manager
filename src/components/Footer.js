@@ -48,7 +48,7 @@ const Footer = () => {
             transition={{ duration: 0.6 }}
           >
             <div className="footer-logo">
-              <div className="logo-text">LoopFi</div>
+              <div className="logo-text">Vuno</div>
             </div>
             <p>Making your money work for you, one bill at a time.</p>
             <div className="social-links">
@@ -91,7 +91,7 @@ const Footer = () => {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.4 }}
         >
-          <p>&copy; 2024 LoopFi. All rights reserved.</p>
+          <p>&copy; 2024 Vuno. All rights reserved.</p>
         </motion.div>
       </div>
     </footer>

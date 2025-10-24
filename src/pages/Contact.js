@@ -39,7 +39,7 @@ const Contact = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            Join the waitlist and be among the first to experience LoopFi
+            Join the waitlist and be among the first to experience Vuno
           </motion.p>
         </div>
       </section>
@@ -64,7 +64,7 @@ const Contact = () => {
                   <i className="fas fa-envelope"></i>
                   <div>
                     <h4>Email</h4>
-                    <p>hello@loopfi.com</p>
+                    <p>hello@vuno.com</p>
                   </div>
                 </div>
                 <div className="contact-item">
@@ -123,7 +123,7 @@ const Contact = () => {
                     value={formData.message}
                     onChange={handleChange}
                     rows="5"
-                    placeholder="Tell us about your monthly expenses and how LoopFi can help..."
+                    placeholder="Tell us about your monthly expenses and how Vuno can help..."
                   ></textarea>
                 </div>
                 

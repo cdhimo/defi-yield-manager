@@ -12,7 +12,7 @@ const About = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            About LoopFi
+            About Vuno
           </motion.h1>
           <motion.p 
             className="page-subtitle"
@@ -36,7 +36,7 @@ const About = () => {
             >
               <h2>Our Mission</h2>
               <p>
-                LoopFi was born from a simple observation: why should your money sit idle in checking accounts 
+                Vuno was born from a simple observation: why should your money sit idle in checking accounts 
                 earning 0.01% interest while you pay bills manually? We believe your expenses should work for you, 
                 not against you.
               </p>

@@ -1,7 +1,7 @@
 {
-  "name": "loopfi-website",
+  "name": "vuno-website",
   "version": "1.0.0",
-  "description": "LoopFi - Turn Expenses into Income",
+  "description": "Vuno - Turn Expenses into Income",
   "homepage": "https://cdhimo.github.io/defi-yield-manager",
   "main": "index.js",
   "scripts": {

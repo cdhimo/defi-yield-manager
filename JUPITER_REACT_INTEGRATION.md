@@ -159,7 +159,7 @@ const loadVaultData = async () => {
 - Error handling with mock data fallback
 
 ### ✅ Earn Card Component
-- Beautiful card design matching LoopFi theme
+- Beautiful card design matching Vuno theme
 - APY and liquidity display
 - Professional vault information
 
@@ -177,11 +177,11 @@ const loadVaultData = async () => {
 
 ### ✅ Dashboard Integration
 - Added to main home page
-- "Earn with LoopFi" section
+- "Earn with Vuno" section
 - Seamless integration with existing design
 
 ### ✅ Design & Branding
-- Matches LoopFi's blue/white fintech theme
+- Matches Vuno's blue/white fintech theme
 - Dark theme for earn section
 - Modern rounded cards with shadows
 - Smooth animations and transitions

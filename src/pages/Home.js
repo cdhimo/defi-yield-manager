@@ -25,7 +25,7 @@ const Home = () => {
     },
     {
       type: 'modern',
-      title: 'LoopFi DeFi',
+      title: 'Vuno DeFi',
       icon: 'fas fa-rocket',
       features: [
         { text: '12-25% APY on deposits', positive: true },
@@ -40,12 +40,12 @@ const Home = () => {
     {
       number: 1,
       title: 'Connect Your Bills',
-      description: 'Link your utilities, subscriptions, rent, and other recurring payments to LoopFi'
+      description: 'Link your utilities, subscriptions, rent, and other recurring payments to Vuno'
     },
     {
       number: 2,
       title: 'Deposit Funds',
-      description: 'Add USDC, USDT, or other stablecoins to your LoopFi vault'
+      description: 'Add USDC, USDT, or other stablecoins to your Vuno vault'
     },
     {
       number: 3,
@@ -63,7 +63,7 @@ const Home = () => {
     {
       icon: 'fas fa-bolt',
       title: 'Instant Automation',
-      description: 'Never miss a payment again. LoopFi handles all your bills automatically while earning yield.'
+      description: 'Never miss a payment again. Vuno handles all your bills automatically while earning yield.'
     },
     {
       icon: 'fas fa-chart-line',
@@ -91,7 +91,7 @@ const Home = () => {
                 <span className="gradient-text"> Passive Income</span>
               </h1>
               <p className="hero-description">
-                LoopFi is the first DeFi app that automatically pays your bills while earning yield on your money. 
+                Vuno is the first DeFi app that automatically pays your bills while earning yield on your money. 
                 Think of it as a high-yield checking account with smart autopay - your expenses become your income stream.
               </p>
               
@@ -137,7 +137,7 @@ const Home = () => {
       <section className="content-section comparison-section">
         <div className="container">
           <div className="section-header">
-            <h2 className="section-title">Why LoopFi Changes Everything</h2>
+            <h2 className="section-title">Why Vuno Changes Everything</h2>
             <p className="section-subtitle">Traditional banking vs. DeFi innovation</p>
           </div>
           
@@ -174,7 +174,7 @@ const Home = () => {
       <section className="content-section steps-section">
         <div className="container">
           <div className="section-header">
-            <h2 className="section-title">How LoopFi Works</h2>
+            <h2 className="section-title">How Vuno Works</h2>
             <p className="section-subtitle">Simple setup, powerful results</p>
           </div>
           

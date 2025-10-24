@@ -31,7 +31,7 @@ const Navbar = () => {
     >
       <div className="nav-container">
         <Link to="/" className="nav-logo">
-          LoopFi
+          Vuno
         </Link>
         <div className="nav-menu">
           {navItems.map((item) => (

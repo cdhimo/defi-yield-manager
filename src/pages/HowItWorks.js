@@ -6,7 +6,7 @@ const HowItWorks = () => {
     {
       number: 1,
       title: 'Connect Your Bills',
-      description: 'Link your utilities, subscriptions, rent, and other recurring payments to LoopFi',
+      description: 'Link your utilities, subscriptions, rent, and other recurring payments to Vuno',
       icon: 'fas fa-link',
       details: [
         'Connect bank accounts and credit cards',
@@ -18,7 +18,7 @@ const HowItWorks = () => {
     {
       number: 2,
       title: 'Deposit Funds',
-      description: 'Add USDC, USDT, or other stablecoins to your LoopFi vault',
+      description: 'Add USDC, USDT, or other stablecoins to your Vuno vault',
       icon: 'fas fa-wallet',
       details: [
         'Deposit stablecoins securely',
@@ -51,7 +51,7 @@ const HowItWorks = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            How LoopFi Works
+            How Vuno Works
           </motion.h1>
           <motion.p 
             className="page-subtitle"

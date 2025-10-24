@@ -11,7 +11,7 @@ const EarnSection = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <h2>Earn with LoopFi</h2>
+          <h2>Earn with Vuno</h2>
           <p className="earn-tagline">Earn yield on your stablecoins via Jupiter</p>
           <EarnCard />
         </motion.div>

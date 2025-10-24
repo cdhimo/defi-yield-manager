@@ -1,4 +1,4 @@
-# LoopFi - Turn Expenses into Income
+# Vuno - Turn Expenses into Income
 
 A modern React application that helps users turn their monthly expenses into passive income through DeFi yield strategies.
 
@@ -137,4 +137,4 @@ The application is built with modularity in mind:
 
 ## 📄 License
 
-© 2024 LoopFi. All rights reserved.
+© 2024 Vuno. All rights reserved.
